@@ -1,0 +1,17 @@
+# Prolog
+% ---------- Base Case ----------
+reverse_list([], []).
+
+% ---------- Recursive Case ----------
+reverse_list([H|T], R) :-
+    reverse_list(T, RevT),
+    append(RevT, [H], R).
+# Query
+?- reverse_list([1,2,3,4], R).
+?- reverse_list([], R).
+?- reverse_list([a,b,c,d], R).
+?- reverse_list([1,2,3,4], R).
+R = [4,3,2,1].
+
+% intermediate conceptual step:
+?- reverse_list([2,3], RevT), append(RevT, [1], R).
