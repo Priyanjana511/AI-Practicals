@@ -1,0 +1,10 @@
+# Prolog
+con([], L, L).
+
+con([H|T], L2, [H|R]) :-
+    con(T, L2, R).
+# Query
+?- con([1,2,3],[6,7],R).
+?- con([a,c],L,[a,b,c,d]).
+?- con([a,b],L,[a,b,c,d]).
+?- con(L1, L2, [a,b,c,d,e]).
