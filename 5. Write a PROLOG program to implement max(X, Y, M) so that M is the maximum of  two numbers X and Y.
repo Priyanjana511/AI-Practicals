@@ -1,0 +1,12 @@
+# Prolog
+% If X is greater than or equal to Y, then M = X.
+max(X, Y, X) :-
+    X >= Y.
+
+% If Y is greater than X, then M = Y.
+max(X, Y, Y) :-
+    Y > X.
+# query
+?- max(10, 20, M).
+?- max(7, 3, M).
+?- max(5, 5, M).
