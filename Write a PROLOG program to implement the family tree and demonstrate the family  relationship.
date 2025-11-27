@@ -1,0 +1,117 @@
+# Prolog code
+% Gender
+male(john).
+male(michael).
+male(david).
+male(peter).
+male(sam).
+
+female(linda).
+female(susan).
+female(mary).
+female(lisa).
+female(kate).
+
+% Parent relationships
+parent(john, michael).
+parent(john, susan).
+parent(linda, michael).
+parent(linda, susan).
+
+parent(michael, david).
+parent(michael, lisa).
+parent(mary, david).
+parent(mary, lisa).
+
+parent(susan, sam).
+parent(peter, sam).
+parent(susan, kate).
+parent(peter, kate).
+
+% ---------- Rules ----------
+% X is father of Y if X is male and X is parent of Y
+father(X, Y) :-
+    male(X),
+    parent(X, Y).
+
+% X is mother of Y if X is female and X is parent of Y
+mother(X, Y) :-
+    female(X),
+    parent(X, Y).
+
+% X is child of Y if Y is parent of X
+child(X, Y) :-
+    parent(Y, X).
+
+% X is sibling of Y if they share the same parent and are not the same person
+sibling(X, Y) :-
+    parent(Z, X),
+    parent(Z, Y),
+    X \= Y.
+
+% X is brother of Y if X is male and sibling of Y
+brother(X, Y) :-
+    male(X),
+    sibling(X, Y).
+
+% X is sister of Y if X is female and sibling of Y
+sister(X, Y) :-
+    female(X),
+    sibling(X, Y).
+
+% X is grandparent of Y if X is parent of Z and Z is parent of Y
+grandparent(X, Y) :-
+    parent(X, Z),
+    parent(Z, Y).
+
+% X is grandfather of Y if X is male and grandparent of Y
+grandfather(X, Y) :-
+    male(X),
+    grandparent(X, Y).
+
+% X is grandmother of Y if X is female and grandparent of Y
+grandmother(X, Y) :-
+    female(X),
+    grandparent(X, Y).
+
+% X is uncle of Y if X is male and sibling of Y's parent
+uncle(X, Y) :-
+    male(X),
+    parent(Z, Y),
+    sibling(X, Z).
+
+% X is aunt of Y if X is female and sibling of Y's parent
+aunt(X, Y) :-
+    female(X),
+    parent(Z, Y),
+    sibling(X, Z).
+
+% X is cousin of Y if their parents are siblings
+cousin(X, Y) :-
+    parent(A, X),
+    parent(B, Y),
+    sibling(A, B).
+# query
+?- father(john, michael).
+true.
+
+?- mother(linda, susan).
+true.
+
+?- sibling(michael, susan).
+true.
+
+?- grandfather(john, david).
+true.
+
+?- grandfather(michael, david).
+false.
+
+?- aunt(susan, david).
+true.
+
+?- cousin(lisa, kate).
+true.
+
+?- cousin(john, susan).
+false.
