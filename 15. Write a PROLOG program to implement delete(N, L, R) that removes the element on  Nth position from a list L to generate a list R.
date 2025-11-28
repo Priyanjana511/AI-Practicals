@@ -1,0 +1,14 @@
+# Prolog
+% If N = 1, remove the head element and return the tail.
+delete(1, [_|T], T).
+
+% For N > 1, keep the head and recursively delete from the tail.
+delete(N, [H|T], [H|R]) :-
+    N > 1,
+    N1 is N - 1,
+    delete(N1, T, R).
+# query
+?- delete(1, [a, b, c, d], R).
+?- delete(3, [a, b, c, d, e], R).
+?- delete(5, [10, 20, 30, 40, 50], R).
+?- delete(2, [x], R).
