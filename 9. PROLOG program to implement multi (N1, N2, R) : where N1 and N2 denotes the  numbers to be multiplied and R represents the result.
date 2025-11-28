@@ -1,0 +1,15 @@
+# Prolog
+% Base Case
+multi(_, 0, 0).
+
+% Recursive Case
+multi(N1, N2, R) :-
+    N2 > 0,
+    N3 is N2 - 1,
+    multi(N1, N3, R1),
+    R is R1 + N1.
+# Query
+?- multi(5, 3, R).
+?- multi(7, 0, R).
+?- multi(4, 1, R).
+?- multi(-3, -3, R).
