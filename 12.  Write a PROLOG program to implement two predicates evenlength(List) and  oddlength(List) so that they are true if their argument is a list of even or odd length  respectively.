@@ -1,0 +1,20 @@
+# Prolog
+% evenlength(List) :- true if List has an even number of elements.
+% oddlength(List)  :- true if List has an odd number of elements.
+
+% Base case: The empty list has even length.
+evenlength([]).
+
+% Recursive case:
+% A list has even length if removing two elements leaves another even list.
+evenlength([_, _|T]) :-
+    evenlength(T).
+
+% A list has odd length if removing one element leaves a list of even length.
+oddlength([_|T]) :-
+    evenlength(T).
+# Query
+?- evenlength([]).
+?- evenlength([a, b, c, d]).
+?- oddlength([a, b, c]).
+?- oddlength([1, 2, 3, 4]).
