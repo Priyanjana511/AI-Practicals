@@ -1,0 +1,8 @@
+# Prolog
+% power(Num, Pow, Ans) :- Ans is Num raised to the power Pow (no recursion).
+
+power(Num, Pow, Ans) :-
+    Ans is Num ** Pow.
+# query
+?- power(2, 5, R).
+?- power(2, -1, R).
