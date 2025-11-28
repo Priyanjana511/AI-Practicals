@@ -1,0 +1,15 @@
+# Prolog
+% Insert element I at position N in list L to get list R.
+
+% Base case: inserting at position 1 means putting I in front of L.
+insert(I, 1, L, [I|L]).
+
+% Recursive case: decrement N until it becomes 1.
+insert(I, N, [H|T], [H|R]) :-
+    N > 1,
+    N1 is N - 1,
+    insert(I, N1, T, R).
+# query
+?- insert(a, 1, [b, c, d], R).
+?- insert(x, 3, [a, b, c, d], R).
+?- insert(10, 5, [1, 2, 3, 4, 5], R).
