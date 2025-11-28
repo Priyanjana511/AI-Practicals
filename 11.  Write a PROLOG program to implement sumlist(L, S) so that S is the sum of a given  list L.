@@ -1,0 +1,14 @@
+# Prolog
+% The sum of an empty list is 0.
+sumlist([], 0).
+
+% For a non-empty list [H|T],
+% sum = H + sum of the rest of the list.
+sumlist([H|T], S) :-
+    sumlist(T, RestSum),
+    S is H + RestSum.
+#query
+?- sumlist([1, 2, 3, 4, 5], S).
+?- sumlist([10, 20, 30], S).
+?- sumlist([], S).
+?- sumlist([5], S).
